@@ -9,7 +9,7 @@ public partial class NovoProduto : ContentPage
 	{
 		InitializeComponent();
 	}
-    private async Task ToolbarItem_Clicked(object sender, EventArgs e)
+    private async void ToolbarItem_Clicked(object sender, EventArgs e)
     {
         try
         {
