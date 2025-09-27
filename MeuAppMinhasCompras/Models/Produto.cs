@@ -1,4 +1,4 @@
-﻿using SQLite;
+﻿using SQLite; // Professor Argeli! Segue o código da atividade da Agenda 05.
 
 namespace MeuAppMinhasCompras.Models
 {

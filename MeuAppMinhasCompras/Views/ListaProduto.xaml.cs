@@ -1,4 +1,4 @@
-using MeuAppMinhasCompras.Models;
+using MeuAppMinhasCompras.Models; // Professor Argeli! Segue o código da atividade da Agenda 05.
 using System.Collections.ObjectModel;
 
 namespace MeuAppMinhasCompras.Views;
@@ -68,7 +68,7 @@ public partial class ListaProduto : ContentPage
 		DisplayAlert("Total dos Produtos", msg, "Ok");
     }
 
-    private void MenuItem_Clicked(object sender, EventArgs e)
+    private async void MenuItem_Clicked(object sender, EventArgs e)
     {
         try
         {
@@ -99,7 +99,7 @@ public partial class ListaProduto : ContentPage
 
             Navigation.PushAsync(new Views.EditarProduto
             {
-                BindingContext = p;
+                BindingContext = p,
             });
         }
         catch (Exception ex)

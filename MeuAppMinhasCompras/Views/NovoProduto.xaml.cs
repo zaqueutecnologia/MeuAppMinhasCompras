@@ -1,4 +1,4 @@
-using MeuAppMinhasCompras.Models;
+using MeuAppMinhasCompras.Models; // Professor Argeli! Segue o código da atividade da Agenda 05.
 using System.Threading.Tasks;
 
 namespace MeuAppMinhasCompras.Views;
