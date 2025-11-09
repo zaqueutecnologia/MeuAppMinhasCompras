@@ -7,18 +7,28 @@ public partial class ListaProduto : ContentPage
 {
 	ObservableCollection<Produto> Lista = new ObservableCollection<Produto>();
 
-	public ListaProduto()
+    public object Lst_produtos { get; private set; }
+
+    public ListaProduto()
 	{
 		InitializeComponent();
 
 		Lst_produtos.ItemsSource = Lista;
 
 	}
+
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
+
     protected async override void OnAppearing()
     {
 		try
-		{		
-			List<Produto> tmp = await App.Db.GetAll();
+		{
+            Lista.Clear();
+            
+            List<Produto> tmp = await App.Db.GetAll();
 
 			tmp.ForEach( i => Lista.Add(i));
         }
@@ -47,7 +57,9 @@ public partial class ListaProduto : ContentPage
 		{		
 		    string q = e.NewTextValue;
 
-		    Lista.Clear();
+            Lst_produtos.IsRefreshing = true;
+
+            Lista.Clear();
 
             List<Produto> tmp = await App.Db.Search(q);
 
@@ -56,6 +68,10 @@ public partial class ListaProduto : ContentPage
         catch (Exception ex)
         {
             await DisplayAlert("Ops", ex.Message, "OK");
+        }
+        finally
+        {
+            Lst_produtos.IsRefreshing = false;
         }
     }
 
@@ -105,6 +121,26 @@ public partial class ListaProduto : ContentPage
         catch (Exception ex)
         {
             DisplayAlert("Ops", ex.Message, "OK");
+        }
+    }
+
+    private async void Lst_produtos_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            Lista.Clear();
+
+            List<Produto> tmp = await App.Db.GetAll();
+
+            tmp.ForEach(i => Lista.Add(i));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Ops", ex.Message, "OK");
+        }
+        finally
+        {
+            Lst_produtos.IsRefreshing = false;
         }
     }
 }

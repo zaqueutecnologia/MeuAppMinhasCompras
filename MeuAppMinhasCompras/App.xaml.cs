@@ -1,4 +1,5 @@
 ﻿using MeuAppMinhasCompras.Helpers;
+using System.Globalization;
 
 namespace MeuAppMinhasCompras
 {
@@ -23,9 +24,12 @@ namespace MeuAppMinhasCompras
                 return _db;
             }
         }
+
         public App()
         {           
             InitializeComponent();
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new Views.ListaProduto());
